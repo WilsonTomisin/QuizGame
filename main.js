@@ -7,15 +7,17 @@ let questionText = document.querySelector(".question-text");
 let optionsText = document.querySelector(".options-text");
 let nextBtn = document.querySelector(".nextquest-btn");
 let resultSection =document.querySelector(".result-section");
-
+let replayBtn = document.querySelector(".replay-btn")
 // let index = 0
 let qCount = 0
 let topq = 1
 let timeW = 350
+let tCount;
+let countline;
 // let timeValue = 20;
 
 function startTimer(time) {
-    let tCount = setInterval(timer,1000)
+    tCount = setInterval(timer,1000)
     function timer() {
         timeleft.innerHTML = time
         time = time - 1;
@@ -42,7 +44,7 @@ function startTimer(time) {
     }
 }
 function timelinefunc(time) {
-    let countline = setInterval(line,43);
+    countline = setInterval(line,43);
     function line() {
         time -- ;
         timeline.style.width = time+"px";
@@ -70,8 +72,12 @@ nextBtn.addEventListener('click',()=>{
         topq++;
         showQuestions(qCount)
         QuestionCounterDisplay(topq)
+        clearInterval(tCount)
         startTimer(15)
+        clearInterval(countline)
         timelinefunc(timeW)
+        
+    
     } else{
         showResults()
     }
@@ -102,6 +108,8 @@ let Incorrecticon = `<span>Incorrect</span>`;
 
 
 function selectedoption(answer) {
+    clearInterval(tCount)
+    clearInterval(countline)
  
     let selectedOption = answer.innerHTML;
     let correctAnswer = questions[qCount].answer;
@@ -148,3 +156,18 @@ function showResults() {
     }
 
 }
+
+// IF REPLAY BUTTON...
+/*function replayquiz() {
+    resultSection.style.display = 'none'
+    container.style.display = 'block'
+    qCount = 1
+    topq = 0
+    qCount++;
+    topq++;
+    showQuestions(qCount)
+    QuestionCounterDisplay(topq)
+    startTimer(15);
+    timelinefunc(timeW)
+}
+replayBtn.addEventListener('click', replayquiz)*/
