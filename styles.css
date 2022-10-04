@@ -2,23 +2,35 @@
     box-sizing: border-box;
     margin: 0px;
     padding: 0px;
+    
 }
 
 body{
-    background-color: rgba(13, 184, 219, 0.75);
+    background-color: rgba(13, 219, 171, 0.75);
+    font-family: 'Kanit', sans-serif;
+   
+
 }
 
 .startquiz-btn{
     all: unset;
     background-color: gainsboro;
+    border-radius: 17px;
     padding: 15px 50px;
     /* height: 70px; */
     /* width: 100px; */
-    color:rgba(13, 184, 219, 0.75) ;
+    color:teal ;
+    font-size: 25px;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
+    transition: 0.5s all ease-in-out;
+}
+.startquiz-btn:hover{
+    box-shadow: 5px 5px 30px grey;
+    cursor: pointer;
+
 }
 
 .container{
@@ -31,7 +43,8 @@ body{
     transform: translate(-50%,-50%);
     height: 600px;
     width: 400px;
-    background-color: beige;
+    background: linear-gradient(white,rgba(255, 255, 255, 0.594));
+    box-shadow: 5px 5px 30px grey;
     padding: 5px;
 }
 .top-bar{
@@ -59,14 +72,11 @@ body{
     position: relative;
     right: -135px;
 }
-.timer .clock{
-    /* border: 1px solid red; */
-}
+
 .top-bar .session-line{
    width: 350px ;
    height: 5px;
-    /* background-color: red; */
-   background-color:rgba(13, 184, 219, 0.75);
+   background-color: white;
    position: absolute;
    top: 66px;
    z-index: 1;
@@ -78,14 +88,21 @@ body{
     top:4%;
     left: 50%;
     transform: translate(-50%,-50%);
-    background-color:rgba(13, 184, 219, 0.75);
+    background-color:rgba(13, 219, 171, 0.75);
     padding: 6px 70px;
     color: gainsboro;
     font-size: 25px;   
     margin-top: 10px;
     border-radius: 20px;
     display: none;
+    transition: all 0.5s ease-in-out;
 
+}
+.nextquest-btn:hover{
+    color: rgba(13, 219, 171, 0.75);
+    background-color: white;
+    box-shadow: 5px 5px 30px grey; 
+    cursor: pointer;
 }
 
 .question-text{
@@ -95,13 +112,23 @@ body{
     /* border: 1px solid blue; */
     align-content: center;
     padding-top:20px;
-
+    border-bottom: 1px solid rgba(13, 219, 171, 0.75);
 }
 .question-text span{
    
     /* margin-top: 30px; */
     font-size: 25px;
     
+}
+.icons{
+    margin-left: 7px;
+}
+.correctans{
+    color: lime;
+    
+}
+.incorrectans{
+    color: red;
 }
 
 .options-text{
@@ -125,6 +152,7 @@ body{
     margin-right: 15px;
     padding: 20px 35px;
     background-color: #fff;
+    transition: 0.5s all ease-out;
     /* height:90%; */
     
 }
@@ -132,6 +160,12 @@ body{
 .options-text .options span:nth-child(2){
     margin-left: 20px;
     border: 1px solid green;
+}
+
+.options-text .options:hover{
+    background-color: gainsboro;
+    box-shadow: 5px 5px 30px grey;
+    cursor: pointer;
 }
 
 .options-text .correct{
@@ -193,8 +227,12 @@ body{
 
     
 }
+.result-section #result-icon{
+    color: aqua;
+    font-size: 40px;
+}
 .result-section .replay-btn:hover{
-    cursor: cell;
     background-color: rgba(252, 239, 239, 0.937);
     box-shadow: 5px 5px 30px grey;
+    cursor: pointer;
 }

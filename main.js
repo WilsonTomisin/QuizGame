@@ -66,6 +66,7 @@ startBtn.addEventListener("click", function() {
     QuestionCounterDisplay(topq)
     startTimer(15);
     timelinefunc(timeW)
+    startBtn.style.display = "none"
 });
 
 // IF NEXT BUTTON
@@ -107,8 +108,8 @@ function showQuestions(index) {
 }
 
 let score =0;
-let Correcticon = `<span>Correct</span>`;
-let Incorrecticon = `<span>Incorrect</span>`;
+let Correcticon = `<span class="icons correctans"><i class="fa-solid fa-circle-check"></i></span>`;
+let Incorrecticon = `<span class="icons incorrectans"><i class="fa-solid fa-circle-xmark"></i></span>`;
 
 
 function selectedoption(answer,qCount) {
@@ -123,6 +124,7 @@ function selectedoption(answer,qCount) {
         console.log('correct')
         answer.classList.add('correct');
         nextBtn.style.display = 'block'
+        answer.insertAdjacentHTML("beforeend", Correcticon)
         //nextBtn.classList.remove('disabled-btn')
         // console.log(selectedOption);
         // console.log("correct",correctAnswer)
@@ -133,6 +135,7 @@ function selectedoption(answer,qCount) {
         console.log('wrong')
         answer.classList.add("incorrect");
         nextBtn.style.display = 'block'
+        answer.insertAdjacentHTML("beforeend", Incorrecticon)
         //nextBtn.classList.remove('disabled-btn')
         // console.log(selectedOption);
         // console.log(answer)
@@ -160,7 +163,7 @@ function selectedoption(answer,qCount) {
 
 
 function QuestionCounterDisplay(index) {
-    let questionDisplay = `<span> ${index} of ${questions.length} </span>`
+    let questionDisplay = `<span>Question ${index} of ${questions.length} </span>`
     containerQuestionCount.innerHTML=questionDisplay;
 }
 
