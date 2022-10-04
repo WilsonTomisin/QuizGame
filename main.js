@@ -22,7 +22,7 @@ function startTimer(time) {
         timeleft.innerHTML = time
         time = time - 1;
         if (time < 0) {
-            
+        
 
             let correctAns = questions[qCount].answer;
             let allOp = optionsText.children.length;
@@ -34,22 +34,25 @@ function startTimer(time) {
                 
             }
             for (let i = 0; i < allOp; i++) {
-                optionsText.children[i].style.backgroundColor = 'black'
+                optionsText.children[i].style.backgroundColor = 'grey'
                 optionsText.children[i].style.color = 'white'
                 optionsText.children[i].classList.add('disabled')
                 
             }
-            clearInterval(tCount)
+            clearInterval(tCount);
+            nextBtn.style.display = 'block'
+    
         }
     }
 }
 function timelinefunc(time) {
-    countline = setInterval(line,43);
+    countline = setInterval(line,46);
     function line() {
         time -- ;
         timeline.style.width = time+"px";
-        if (time == 1) {
+        if (time < 1) {
             clearInterval(countline)
+            nextBtn.style.display = 'block'
         }
     }
 }
@@ -76,6 +79,7 @@ nextBtn.addEventListener('click',()=>{
         startTimer(15)
         clearInterval(countline)
         timelinefunc(timeW)
+        nextBtn.style.display = 'none';
         
     
     } else{
@@ -97,7 +101,7 @@ function showQuestions(index) {
     optionsText.innerHTML = options_tag;            
     const options = optionsText.querySelectorAll(".options");
     for (let index = 0; index < options.length; index++) {
-        options[index].setAttribute("onclick","selectedoption(this)")
+        options[index].setAttribute("onclick","selectedoption(this,qCount)")
         
     } 
 }
@@ -107,7 +111,7 @@ let Correcticon = `<span>Correct</span>`;
 let Incorrecticon = `<span>Incorrect</span>`;
 
 
-function selectedoption(answer) {
+function selectedoption(answer,qCount) {
     clearInterval(tCount)
     clearInterval(countline)
  
@@ -118,17 +122,37 @@ function selectedoption(answer) {
         score = score +1;
         console.log('correct')
         answer.classList.add('correct');
-        console.log(selectedOption);
-        console.log("correct",correctAnswer)
-        console.log(answer)
-    } else {
+        nextBtn.style.display = 'block'
+        //nextBtn.classList.remove('disabled-btn')
+        // console.log(selectedOption);
+        // console.log("correct",correctAnswer)
+        // console.log(answer)
+    } else if (selectedOption !== correctAnswer){
+        score = score + 0 ;
+
         console.log('wrong')
         answer.classList.add("incorrect");
-        console.log(selectedOption);
-        console.log(answer)
-        console.log("correct",correctAnswer)
+        nextBtn.style.display = 'block'
+        //nextBtn.classList.remove('disabled-btn')
+        // console.log(selectedOption);
+        // console.log(answer)
+        // console.log("correct",correctAnswer)
+        let correctAns = questions[qCount].answer
+        let allOp = optionsText.children.length
 
-        // selectedOption.appendChild()
+        for (let i = 0; i < allOp; i++) {
+            if (optionsText.children[i].innerHTML == correctAns) {
+                optionsText.children[i].classList.add('correct');
+            }
+        }
+        for (let i = 0; i < allOp; i++) {
+            optionsText.children[i].classList.add("disabled")
+            optionsText.children[i].style.backgroundColor = 'grey'
+            
+            
+        }
+
+
     }
 
 
@@ -157,17 +181,3 @@ function showResults() {
 
 }
 
-// IF REPLAY BUTTON...
-/*function replayquiz() {
-    resultSection.style.display = 'none'
-    container.style.display = 'block'
-    qCount = 1
-    topq = 0
-    qCount++;
-    topq++;
-    showQuestions(qCount)
-    QuestionCounterDisplay(topq)
-    startTimer(15);
-    timelinefunc(timeW)
-}
-replayBtn.addEventListener('click', replayquiz)*/
