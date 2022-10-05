@@ -171,13 +171,16 @@ function showResults() {
     container.style.display = 'none';
     resultSection.style.display = 'block';
     let scoreTxt = document.querySelector(".score")
-    if (score >= 3) {
-        let scoreTag = `Welldone you scored ${score} out of ${questions.length}!!`
+    if (score >= 15) {
+        let scoreTag = `BRILLIANT! You scored ${score} out of ${questions.length}!! Welldone.`
         scoreTxt.innerHTML = scoreTag;
-    } else if (score < 3 && score > 0) {
+    }else if (score < 15 && score >= 10) {
+        let scoreTag = `Bravo! you scored ${score} out of ${questions.length}.`;
+        scoreTxt.innerHTML = scoreTag;
+    }else if (score < 10 && score > 5) {
         let scoreTag = `Fair you scored ${score} out of ${questions.length}.`;
         scoreTxt.innerHTML = scoreTag;
-    }else if (score == 0) {
+    }else if (score <= 5) {
         let scoreTag = `You scored ${score} out of ${questions.length}.Try Again?`
         scoreTxt.innerHTML = scoreTag
     } 
