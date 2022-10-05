@@ -34,8 +34,8 @@ function startTimer(time) {
                 
             }
             for (let i = 0; i < allOp; i++) {
-                optionsText.children[i].style.backgroundColor = 'grey'
-                optionsText.children[i].style.color = 'white'
+                optionsText.children[i].style.backgroundColor = 'gainsboro'
+                optionsText.children[i].style.color = 'black'
                 optionsText.children[i].classList.add('disabled')
                 
             }
@@ -150,7 +150,7 @@ function selectedoption(answer,qCount) {
         }
         for (let i = 0; i < allOp; i++) {
             optionsText.children[i].classList.add("disabled")
-            optionsText.children[i].style.backgroundColor = 'grey'
+            optionsText.children[i].style.backgroundColor = 'white'
             
             
         }
@@ -174,10 +174,14 @@ function showResults() {
     if (score >= 3) {
         let scoreTag = `Welldone you scored ${score} out of ${questions.length}!!`
         scoreTxt.innerHTML = scoreTag;
-    } else if (score < 3) {
+    } else if (score < 3 && score > 0) {
         let scoreTag = `Fair you scored ${score} out of ${questions.length}.`;
         scoreTxt.innerHTML = scoreTag;
-    } else{
+    }else if (score == 0) {
+        let scoreTag = `You scored ${score} out of ${questions.length}.Try Again?`
+        scoreTxt.innerHTML = scoreTag
+    } 
+    else{
         let scoreTag = `You scored ${score} out of ${questions.length}.`;
         scoreTxt.innerHTML = scoreTag;
     }
